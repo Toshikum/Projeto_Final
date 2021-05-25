@@ -5,6 +5,10 @@
  */
 package Telas;
 
+import Classes.Pessoa;
+import DAO.DAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author toshi
@@ -15,6 +19,7 @@ public class TelaCadastrarPessoas extends javax.swing.JFrame {
      * Creates new form TelaCadastroPessoa
      */
     public TelaCadastrarPessoas() {
+        super ("Cadastro de Pessoas");
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -32,8 +37,8 @@ public class TelaCadastrarPessoas extends javax.swing.JFrame {
         jLabelCadastroDePessoas = new javax.swing.JLabel();
         jTextFieldNome = new javax.swing.JTextField();
         jTextFieldIdade = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jTextFieldEndereço = new javax.swing.JTextField();
+        jCheckBoxSaude = new javax.swing.JCheckBox();
+        jTextFieldEndereco = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
 
@@ -53,15 +58,25 @@ public class TelaCadastrarPessoas extends javax.swing.JFrame {
         jTextFieldIdade.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextFieldIdade.setBorder(javax.swing.BorderFactory.createTitledBorder("Idade"));
 
-        jCheckBox1.setText("Profissional da Sáude");
+        jCheckBoxSaude.setText("Profissional da Saúde");
+        jCheckBoxSaude.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxSaudeActionPerformed(evt);
+            }
+        });
 
-        jTextFieldEndereço.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextFieldEndereço.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
+        jTextFieldEndereco.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextFieldEndereco.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
 
-        jButtonSalvar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonSalvar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
-        jButtonCancelar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonCancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,8 +98,8 @@ public class TelaCadastrarPessoas extends javax.swing.JFrame {
                         .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTextFieldNome)
                     .addComponent(jTextFieldIdade, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldEndereço, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))
+                    .addComponent(jCheckBoxSaude, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -96,9 +111,9 @@ public class TelaCadastrarPessoas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(jCheckBoxSaude)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldEndereço, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,8 +136,45 @@ public class TelaCadastrarPessoas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
+        TelaAdmin telaAdmin = new TelaAdmin();
+        telaAdmin.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        String nomePessoa = jTextFieldNome.getText();
+        int idadePessoa = Integer.parseInt(jTextFieldIdade.getText());
+        boolean saudePessoa = jCheckBoxSaude.isSelected();
+        String enderecoPessoa = jTextFieldEndereco.getText();
+        if (nomePessoa == null || nomePessoa.length() == 0 
+                || jTextFieldIdade.getText() == null || jTextFieldIdade.getText().length() == 0 
+                || enderecoPessoa == null || enderecoPessoa.length() == 0){
+            JOptionPane.showMessageDialog(null, "Preencha nome, idade e endereço");
+        }
+        else{
+            try{
+                int escolha = JOptionPane.showConfirmDialog(null, "Confimar cadastro de nova pessoa?");
+                if (escolha == JOptionPane.YES_OPTION){
+                    Pessoa pessoa = new Pessoa(nomePessoa, idadePessoa, saudePessoa, enderecoPessoa);
+                    DAO dao = new DAO();
+                    dao.cadastrarPessoa(pessoa);
+                    JOptionPane.showMessageDialog(null, pessoa.getNome() + " cadastrado com sucesso!");
+                    jTextFieldNome.setText("");
+                    jTextFieldIdade.setText("");
+                    jCheckBoxSaude.setSelected(false);
+                    jTextFieldEndereco.setText("");
+                }
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Problema ao cadastrar pessoa, tente novamente.");
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jCheckBoxSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSaudeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxSaudeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,10 +217,10 @@ public class TelaCadastrarPessoas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBoxSaude;
     private javax.swing.JLabel jLabelCadastroDePessoas;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextFieldEndereço;
+    private javax.swing.JTextField jTextFieldEndereco;
     private javax.swing.JTextField jTextFieldIdade;
     private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables

@@ -5,6 +5,10 @@
  */
 package Telas;
 
+import Classes.Usuario;
+import DAO.DAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author toshi
@@ -15,6 +19,7 @@ public class TelaCadastrarUsuarios extends javax.swing.JFrame {
      * Creates new form TelaGerenciarUsuarios
      */
     public TelaCadastrarUsuarios() {
+        super("Cadastro de Usuários");
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -31,10 +36,10 @@ public class TelaCadastrarUsuarios extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabelCadastroDeUsuarios = new javax.swing.JLabel();
         jTextFieldNome = new javax.swing.JTextField();
-        jPasswordFieldSenha = new javax.swing.JPasswordField();
         jCheckBoxAdministrador = new javax.swing.JCheckBox();
         jButtonSalvar = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
+        jTextFieldSenha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -53,16 +58,26 @@ public class TelaCadastrarUsuarios extends javax.swing.JFrame {
             }
         });
 
-        jPasswordFieldSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jPasswordFieldSenha.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha"));
-
         jCheckBoxAdministrador.setText("Administrador");
 
-        jButtonSalvar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonSalvar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
-        Cancelar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         Cancelar.setText("Cancelar");
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
+
+        jTextFieldSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextFieldSenha.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha"));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -71,14 +86,15 @@ public class TelaCadastrarUsuarios extends javax.swing.JFrame {
             .addComponent(jLabelCadastroDeUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCheckBoxAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -87,15 +103,15 @@ public class TelaCadastrarUsuarios extends javax.swing.JFrame {
                 .addComponent(jLabelCadastroDeUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBoxAdministrador)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
-                .addGap(0, 35, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -115,6 +131,39 @@ public class TelaCadastrarUsuarios extends javax.swing.JFrame {
     private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        String nomeUsuario = jTextFieldNome.getText();
+        String senhaUsuario = jTextFieldSenha.getText();
+        boolean adminUsuario = jCheckBoxAdministrador.isSelected();
+        if (nomeUsuario == null || nomeUsuario.length() == 0 || senhaUsuario == null || senhaUsuario.length() == 0){
+            JOptionPane.showMessageDialog(null, "Preencha o nome e senha.");
+        }
+        else{
+            try{
+                int escolha = JOptionPane.showConfirmDialog(null, "Confimar cadastro de novo usuário?");
+                if (escolha == JOptionPane.YES_OPTION){
+                    Usuario usuario = new Usuario(nomeUsuario, senhaUsuario, adminUsuario);
+                    DAO dao = new DAO();
+                    dao.cadastrarUsuario(usuario);
+                    JOptionPane.showMessageDialog(null, usuario.getNome() + " cadastrado com sucesso!");
+                    jTextFieldNome.setText("");
+                    jTextFieldSenha.setText("");
+                    jCheckBoxAdministrador.setSelected(false);
+                }
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Problema ao cadastrar usuário, tente novamente.");
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        TelaAdmin telaAdmin = new TelaAdmin();
+        telaAdmin.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_CancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,7 +207,7 @@ public class TelaCadastrarUsuarios extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBoxAdministrador;
     private javax.swing.JLabel jLabelCadastroDeUsuarios;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JTextField jTextFieldNome;
+    private javax.swing.JTextField jTextFieldSenha;
     // End of variables declaration//GEN-END:variables
 }

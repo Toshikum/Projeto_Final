@@ -19,6 +19,7 @@ public class TelaLogin extends javax.swing.JFrame {
      * Creates new form TelaLogin
      */
     public TelaLogin() {
+        super("Login");
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -45,6 +46,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jPanelLogin.setBackground(new java.awt.Color(255, 255, 255));
 
+        jButtonAcessar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButtonAcessar.setText("Acessar");
         jButtonAcessar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,6 +54,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+        jButtonSair.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButtonSair.setText("Sair");
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +125,12 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        dispose();
+        int escolha = JOptionPane.showConfirmDialog(null, "Deseja mesmo sair?");
+        if(escolha == JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Até logo");
+            dispose();
+        }
+        
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed

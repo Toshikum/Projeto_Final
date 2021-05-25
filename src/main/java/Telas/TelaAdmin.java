@@ -15,6 +15,7 @@ public class TelaAdmin extends javax.swing.JFrame {
      * Creates new form TelaAdmin
      */
     public TelaAdmin() {
+        super ("Tela Admin");
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -35,6 +36,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         jButtonCadastrarPessoas = new javax.swing.JButton();
         jButtonGerarRelatorios = new javax.swing.JButton();
         jButtonRemoverUsuarios = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -54,7 +56,7 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         jLabelLogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\toshi\\OneDrive\\Desktop\\Imagens para o Projeto Final\\logo_Fila_Covac.png")); // NOI18N
 
-        jButtonCadastrarUsuarios.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonCadastrarUsuarios.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButtonCadastrarUsuarios.setText("Cadastrar Usuários");
         jButtonCadastrarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,14 +64,28 @@ public class TelaAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButtonCadastrarPessoas.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonCadastrarPessoas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButtonCadastrarPessoas.setText("Cadastrar Pessoas");
+        jButtonCadastrarPessoas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarPessoasActionPerformed(evt);
+            }
+        });
 
-        jButtonGerarRelatorios.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonGerarRelatorios.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButtonGerarRelatorios.setText("Gerar Relatórios");
 
-        jButtonRemoverUsuarios.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonRemoverUsuarios.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButtonRemoverUsuarios.setText("Remover Usuários");
+        jButtonRemoverUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverUsuariosActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Administrador");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -78,53 +94,74 @@ public class TelaAdmin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonCadastrarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonCadastrarPessoas, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(69, 69, 69)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonRemoverUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonGerarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(76, 76, 76)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonGerarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonRemoverUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(jLabelLogo)))
-                .addContainerGap(146, Short.MAX_VALUE))
+                        .addGap(191, 191, 191)
+                        .addComponent(jLabelLogo))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(jLabel1)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRemoverUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCadastrarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonGerarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCadastrarPessoas, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61))
+                    .addComponent(jButtonCadastrarPessoas, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonGerarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(646, 518));
+        setSize(new java.awt.Dimension(629, 518));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarUsuariosActionPerformed
-        // TODO add your handling code here:
+        TelaCadastrarUsuarios telaUsuario = new TelaCadastrarUsuarios();
+        telaUsuario.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCadastrarUsuariosActionPerformed
+
+    private void jButtonCadastrarPessoasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarPessoasActionPerformed
+        TelaCadastrarPessoas telaPessoa = new TelaCadastrarPessoas();
+        telaPessoa.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonCadastrarPessoasActionPerformed
+
+    private void jButtonRemoverUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverUsuariosActionPerformed
+        TelaRemoverUsuarios telaRemover = new TelaRemoverUsuarios();
+        telaRemover.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonRemoverUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,6 +203,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarUsuarios;
     private javax.swing.JButton jButtonGerarRelatorios;
     private javax.swing.JButton jButtonRemoverUsuarios;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

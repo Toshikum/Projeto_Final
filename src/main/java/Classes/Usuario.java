@@ -10,28 +10,62 @@ package Classes;
  * @author toshi
  */
 public class Usuario {
-    private String Nome;
-    private String Senha;
+    private int id;
+    private String nome;
+    private String senha;
+    private boolean administrador;
 
-    public Usuario(String Nome, String Senha) {
-        this.Nome = Nome;
-        this.Senha = Senha;
+    public Usuario(String nome, String senha, boolean administrador) {
+        this.nome = nome;
+        this.senha = senha;
+        this.administrador = administrador;
+    }
+    
+    public Usuario (String nome, String senha){
+        this.nome = nome;
+        this.senha = senha;
+    }
+    
+    public Usuario (int id, String nome,boolean administrador){
+        this.id = id;
+        this.nome = nome;
+        this.administrador = administrador;
+    }
+    
+    public Usuario (int id){
+        this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+ 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getSenha() {
-        return Senha;
+        return senha;
     }
 
-    public void setSenha(String Senha) {
-        this.Senha = Senha;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
-     
+
+    public Boolean getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(Boolean administrador) {
+        this.administrador = administrador;
+    }
+    
+    @Override
+    public String toString(){
+        return this.nome;
+    }
 }

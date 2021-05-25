@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Classes.Pessoa;
 import Conexao.Conexao;
 import Classes.Usuario;
 import java.sql.Connection;
@@ -19,8 +20,8 @@ import java.sql.ResultSet;
 public class DAO {
     public boolean existe (Usuario usuario) throws Exception{
         String sql = "SELECT*FROM usuarios WHERE nome = ? AND senha = ?";
-        try(Connection conn = Conexao.obterConexao();
-            PreparedStatement ps = conn.prepareStatement(sql)){
+        try(Connection conexao = Conexao.obterConexao();
+            PreparedStatement ps = conexao.prepareStatement(sql)){
             ps.setString(1, usuario.getNome());
             ps.setString(2, usuario.getSenha());
             try(ResultSet rs = ps.executeQuery()){
@@ -30,14 +31,65 @@ public class DAO {
     }
     public boolean administrador (Usuario usuario) throws Exception{
         String sql = "SELECT*FROM usuarios WHERE nome = ?";
-        try(Connection conn = Conexao.obterConexao();
-            PreparedStatement ps = conn.prepareStatement(sql)){
+        try(Connection conexao = Conexao.obterConexao();
+            PreparedStatement ps = conexao.prepareStatement(sql)){
             ps.setString(1, usuario.getNome());          
             try(ResultSet rs = ps.executeQuery()){
-                if(rs.next()){
-                return rs.getBoolean(4);
-                }
+                rs.next();
+                return rs.getBoolean(4);                
             }
+        }
+    }
+    public void cadastrarUsuario(Usuario usuario) throws Exception{
+        String sql = "INSERT INTO usuarios(nome, senha, administrador) VALUES (?, ?, ?)";
+        try(Connection conexao = Conexao.obterConexao();
+                PreparedStatement ps = conexao.prepareStatement(sql)){
+            ps.setString(1, usuario.getNome());
+            ps.setString(2, usuario.getSenha());
+            ps.setBoolean(3, usuario.getAdministrador());
+            ps.execute();
+        }
+    }
+    public Usuario[] obterUsuario () throws Exception{
+        String sql = "SELECT * FROM usuarios";
+        try(Connection conexao = Conexao.obterConexao();
+            PreparedStatement ps = conexao.prepareStatement(
+                sql, 
+                ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = ps.executeQuery()){
+                    
+                int totalDeUsuarios = rs.last() ? rs.getRow() : 0;
+                Usuario [] usuarios = new Usuario[totalDeUsuarios];
+                rs.beforeFirst();
+                int contador = 0;
+                while (rs.next()){
+                    int id = rs.getInt("id");
+                    String nome = rs.getString("nome");
+                    boolean administrador = rs.getBoolean("administrador");
+                    usuarios[contador++] = new Usuario (id,nome,administrador);
+                }
+                return usuarios;
+            }
+    }
+    public void removerUsuario(Usuario usuario) throws Exception{
+        String sql = "DELETE FROM usuarios WHERE id = ?";
+        try(Connection conexao = Conexao.obterConexao();
+                PreparedStatement ps = conexao.prepareStatement(sql);){
+            ps.setInt(1, usuario.getId());
+            ps.execute();
+        }                
+    }
+    
+    public void cadastrarPessoa(Pessoa pessoa) throws Exception{
+        String sql = "INSERT INTO pessoas(nome, idade, saude, endereco) VALUES (?, ?, ?, ?)";
+        try(Connection conexao = Conexao.obterConexao();
+                PreparedStatement ps = conexao.prepareStatement(sql)){
+            ps.setString(1, pessoa.getNome());
+            ps.setInt(2, pessoa.getIdade());
+            ps.setBoolean(3, pessoa.isSaude());
+            ps.setString(4, pessoa.getEndereco());
+            ps.execute();
         }
     }
 }
