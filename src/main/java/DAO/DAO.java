@@ -11,6 +11,9 @@ import Classes.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -91,5 +94,23 @@ public class DAO {
             ps.setString(4, pessoa.getEndereco());
             ps.execute();
         }
+    }
+    
+    public List <Pessoa> obterPessoa () throws Exception{
+        String sql = "SELECT * FROM pessoas WHERE data_vacinacao IS NULL";
+        List <Pessoa> pessoas = new ArrayList <> ();
+        try(Connection conexao = Conexao.obterConexao();
+            PreparedStatement ps = conexao.prepareStatement(sql)){
+                try (ResultSet rs = ps.executeQuery()){
+                    while (rs.next()){
+                    int id = rs.getInt("id");
+                    String nome = rs.getString("nome");
+                    int idade = rs.getInt("idade");
+                    boolean saude = rs.getBoolean("saude");
+                    pessoas.add(new Pessoa(id,nome,idade,saude));
+                }    
+            }
+        } 
+        return pessoas;
     }
 }

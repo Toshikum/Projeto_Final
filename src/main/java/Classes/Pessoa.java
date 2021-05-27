@@ -15,22 +15,40 @@ public class Pessoa {
     private int idade;
     private boolean saude;
     private String endereco;
+    private boolean vacinacao;
 
+    public Pessoa(String nome, int idade, boolean saude, String endereco, boolean vacinacao) {
+        this.nome = nome;
+        this.idade = idade;
+        this.saude = saude;
+        this.endereco = endereco;
+        this.vacinacao = vacinacao;
+    }
+
+    //cadastrar pessoa
     public Pessoa(String nome, int idade, boolean saude, String endereco) {
         this.nome = nome;
         this.idade = idade;
         this.saude = saude;
         this.endereco = endereco;
     }
-
+    
+    //buscar pessoa
+    public Pessoa(int id, String nome, int idade, boolean saude) {
+        this.id = id;
+        this.nome = nome;
+        this.idade = idade;
+        this.saude = saude;
+    }
+    
     public int getId() {
         return id;
     }
-
-    public void setId(int id) {
+    
+    public void setId(int id){
         this.id = id;
     }
-
+    
     public String getNome() {
         return nome;
     }
@@ -62,6 +80,13 @@ public class Pessoa {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    
-    
+
+    public boolean isVacinacao() {
+        return vacinacao;
+    }
+
+    public void setVacinacao(boolean vacinacao) {
+        this.vacinacao = vacinacao;
+    }
+        
 }
