@@ -5,19 +5,22 @@
  */
 package Classes;
 
+import java.sql.Date;
+import java.util.Comparator;
+
 /**
  *
  * @author toshi
  */
-public class Pessoa {
+public class Pessoa implements Comparable <Pessoa>{
     private int id;
     private String nome;
     private int idade;
     private boolean saude;
     private String endereco;
-    private boolean vacinacao;
+    private Date vacinacao;
 
-    public Pessoa(String nome, int idade, boolean saude, String endereco, boolean vacinacao) {
+    public Pessoa(String nome, int idade, boolean saude, String endereco, Date vacinacao) {
         this.nome = nome;
         this.idade = idade;
         this.saude = saude;
@@ -81,12 +84,25 @@ public class Pessoa {
         this.endereco = endereco;
     }
 
-    public boolean isVacinacao() {
+    public Date getVacinacao() {
         return vacinacao;
     }
 
-    public void setVacinacao(boolean vacinacao) {
+    public void setVacinacao(Date vacinacao) {
         this.vacinacao = vacinacao;
     }
-        
+    /*@Override
+    public int compareTo(Pessoa p) {
+    if (this.idade < 70)
+        return -2;
+    if (!this.saude)
+        return -1;
+    return 1;
+    }*/
+    @Override
+    public int compareTo(Pessoa o){
+    return Comparator.comparingInt(Pessoa::getIdade)
+              .thenComparing(Pessoa::isSaude)
+              .compare(this, o);
+    }
 }

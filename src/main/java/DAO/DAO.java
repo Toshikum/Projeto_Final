@@ -9,11 +9,12 @@ import Classes.Pessoa;
 import Conexao.Conexao;
 import Classes.Usuario;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
+
 
 
 /**
@@ -112,5 +113,14 @@ public class DAO {
             }
         } 
         return pessoas;
+    }
+    public void confirmarVacinacao (int id) throws Exception{
+        String sql = "UPDATE pessoas SET data_vacinacao = ? WHERE id = ?";
+        try(Connection conexao = Conexao.obterConexao();
+                PreparedStatement ps = conexao.prepareStatement(sql)){
+                ps.setDate(1, new java.sql.Date(new java.util.Date().getTime()));
+                ps.setInt(2, id);
+                ps.execute();
+        }
     }
 }

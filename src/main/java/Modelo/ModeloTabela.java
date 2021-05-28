@@ -7,6 +7,7 @@ package Modelo;
 
 import Classes.Pessoa;
 import DAO.DAO;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -16,10 +17,11 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModeloTabela extends AbstractTableModel {
     private List <Pessoa> pessoas;
-    private String [] colunas = {"Nome", "idade", "Profissional da Saúde", "Vacinação"};
+    private String [] colunas = {"ID","Nome", "Idade", "Profissional da Saúde"};
     public ModeloTabela() throws Exception{
     DAO dao = new DAO ();
     this.pessoas = dao.obterPessoa();
+    Collections.sort(pessoas, Collections.reverseOrder());
     }
     @Override
     public int getRowCount() {
@@ -33,13 +35,13 @@ public class ModeloTabela extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
     switch (columnIndex){
         case 0:
-            return this.pessoas.get(rowIndex).getNome();
+            return this.pessoas.get(rowIndex).getId();
         case 1:
-            return this.pessoas.get(rowIndex).getIdade();
+            return this.pessoas.get(rowIndex).getNome();
         case 2:
-            return this.pessoas.get(rowIndex).isSaude();
+            return this.pessoas.get(rowIndex).getIdade();
         case 3:
-            return this.pessoas.get(rowIndex).isVacinacao();
+            return this.pessoas.get(rowIndex).isSaude();
         default:
         return null;
         }
@@ -54,16 +56,5 @@ public class ModeloTabela extends AbstractTableModel {
         return getValueAt(0, columnIndex).getClass();
     }
     
-    @Override
-    public boolean isCellEditable(int row, int col) {
-    if (col == 3)   
-        return true;
-    else                // todas as outras colunas
-        return false; 
-    }
-    public void setValueAt(Object value, int row, int col) {
-    pessoas[row][col] = value;
-    fireTableCellUpdated(row, col);
-    }
 }
 
