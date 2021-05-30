@@ -36,7 +36,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         jLabelLogo = new javax.swing.JLabel();
         jButtonCadastrarUsuarios = new javax.swing.JButton();
         jButtonCadastrarPessoas = new javax.swing.JButton();
-        jButtonGerarRelatorios = new javax.swing.JButton();
+        jButtonRelatorio = new javax.swing.JButton();
         jButtonRemoverUsuarios = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButtonSair = new javax.swing.JButton();
@@ -75,8 +75,13 @@ public class TelaAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButtonGerarRelatorios.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButtonGerarRelatorios.setText("Gerar Relatórios");
+        jButtonRelatorio.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButtonRelatorio.setText("Relatório");
+        jButtonRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRelatorioActionPerformed(evt);
+            }
+        });
 
         jButtonRemoverUsuarios.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButtonRemoverUsuarios.setText("Remover Usuários");
@@ -119,7 +124,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                                     .addComponent(jButtonCadastrarPessoas, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(76, 76, 76)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButtonGerarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButtonRemoverUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(192, 192, 192)
@@ -140,7 +145,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCadastrarPessoas, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonGerarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -186,6 +191,12 @@ public class TelaAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonSairActionPerformed
 
+    private void jButtonRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRelatorioActionPerformed
+        TelaRelatorio tlRel = new TelaRelatorio();
+        tlRel.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonRelatorioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,7 +235,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrarPessoas;
     private javax.swing.JButton jButtonCadastrarUsuarios;
-    private javax.swing.JButton jButtonGerarRelatorios;
+    private javax.swing.JButton jButtonRelatorio;
     private javax.swing.JButton jButtonRemoverUsuarios;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabel1;

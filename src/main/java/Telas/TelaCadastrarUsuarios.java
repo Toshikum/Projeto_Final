@@ -133,13 +133,15 @@ public class TelaCadastrarUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        String nomeUsuario = jTextFieldNome.getText();
-        String senhaUsuario = jTextFieldSenha.getText();
-        boolean adminUsuario = jCheckBoxAdministrador.isSelected();
-        if (nomeUsuario == null || nomeUsuario.length() == 0 || senhaUsuario == null || senhaUsuario.length() == 0){
-            JOptionPane.showMessageDialog(null, "Preencha o nome e senha.");
+
+        if (jTextFieldNome.getText() == null || jTextFieldNome.getText().length() == 0 || 
+           jTextFieldSenha.getText() == null || jTextFieldSenha.getText().length() == 0){
+           JOptionPane.showMessageDialog(null, "Preencha o nome e senha.");
         }
         else{
+            String nomeUsuario = jTextFieldNome.getText();
+            String senhaUsuario = jTextFieldSenha.getText();
+            boolean adminUsuario = jCheckBoxAdministrador.isSelected();
             try{
                 int escolha = JOptionPane.showConfirmDialog(null, "Confimar cadastro de novo usuário?");
                 if (escolha == JOptionPane.YES_OPTION){

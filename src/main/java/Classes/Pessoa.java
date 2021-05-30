@@ -44,6 +44,15 @@ public class Pessoa implements Comparable <Pessoa>{
         this.saude = saude;
     }
     
+    //buscar vacinados
+    public Pessoa(String nome, int idade, boolean saude, Date vacinacao) {
+        this.nome = nome;
+        this.idade = idade;
+        this.saude = saude;
+        this.vacinacao = vacinacao;
+    }
+    
+    
     public int getId() {
         return id;
     }
@@ -91,14 +100,7 @@ public class Pessoa implements Comparable <Pessoa>{
     public void setVacinacao(Date vacinacao) {
         this.vacinacao = vacinacao;
     }
-    /*@Override
-    public int compareTo(Pessoa p) {
-    if (this.idade < 70)
-        return -2;
-    if (!this.saude)
-        return -1;
-    return 1;
-    }*/
+    
     @Override
     public int compareTo(Pessoa o){
     return Comparator.comparingInt(Pessoa::getIdade)

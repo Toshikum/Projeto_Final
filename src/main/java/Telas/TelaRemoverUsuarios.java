@@ -71,7 +71,7 @@ private int idUsuario;
             }
         });
 
-        jButtonRemover.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonRemover.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButtonRemover.setText("Remover");
         jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +79,7 @@ private int idUsuario;
             }
         });
 
-        jButtonCancelar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonCancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -142,16 +142,17 @@ public class TelaCadastrarPessoas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        String nomePessoa = jTextFieldNome.getText();
-        int idadePessoa = Integer.parseInt(jTextFieldIdade.getText());
-        boolean saudePessoa = jCheckBoxSaude.isSelected();
-        String enderecoPessoa = jTextFieldEndereco.getText();
-        if (nomePessoa == null || nomePessoa.length() == 0 
+        
+        if (jTextFieldNome.getText() == null || jTextFieldNome.getText().length() == 0 
                 || jTextFieldIdade.getText() == null || jTextFieldIdade.getText().length() == 0 
-                || enderecoPessoa == null || enderecoPessoa.length() == 0){
+                || jTextFieldEndereco.getText() == null || jTextFieldEndereco.getText().length() == 0){
             JOptionPane.showMessageDialog(null, "Preencha nome, idade e endereço");
         }
         else{
+            String nomePessoa = jTextFieldNome.getText();
+            int idadePessoa = Integer.parseInt(jTextFieldIdade.getText());
+            boolean saudePessoa = jCheckBoxSaude.isSelected();
+            String enderecoPessoa = jTextFieldEndereco.getText();
             try{
                 int escolha = JOptionPane.showConfirmDialog(null, "Confimar cadastro de nova pessoa?");
                 if (escolha == JOptionPane.YES_OPTION){

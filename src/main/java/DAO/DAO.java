@@ -8,12 +8,14 @@ package DAO;
 import Classes.Pessoa;
 import Conexao.Conexao;
 import Classes.Usuario;
+import Classes.Utils;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 
 
@@ -121,6 +123,25 @@ public class DAO {
                 ps.setDate(1, new java.sql.Date(new java.util.Date().getTime()));
                 ps.setInt(2, id);
                 ps.execute();
+        }
+    }
+    public List <Pessoa> buscarVacinacao (String dtIni ,String dtFin) throws Exception{
+        String sql = "SELECT * FROM pessoas WHERE data_vacinacao BETWEEN ? AND ?";
+        List <Pessoa> vacinados = new ArrayList <> ();
+        try(Connection conexao = Conexao.obterConexao();
+                PreparedStatement ps = conexao.prepareStatement(sql)){
+            ps.setDate(1, new java.sql.Date(Utils.converter(dtIni).getTime()));
+            ps.setDate(2, new java.sql.Date(Utils.converter(dtFin).getTime()));
+            try (ResultSet rs = ps.executeQuery()){
+                    while (rs.next()){
+                    String nome = rs.getString("nome");
+                    int idade = rs.getInt("idade");
+                    boolean saude = rs.getBoolean("saude");
+                    String vacinacao = rs.getString("data_vacinacao");
+                    vacinados.add(new Pessoa(nome, idade, saude, vacinacao));
+                } 
+            }
+            return vacinados;
         }
     }
 }
